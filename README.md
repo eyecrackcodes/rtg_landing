@@ -32,9 +32,30 @@ rtg/
 | `--pitch` | `#1C3A2B` | Deep green, "Coming Soon" band |
 
 - **Type:** Archivo Black (display) + Archivo (body). One family, two weights of personality.
-- **Crest:** inline SVG `<symbol id="crest">` at the bottom of `index.html`, reused everywhere via `<use>`. Recolor it by editing the `.cr-*` rules in `style.css` — it's not an image file.
 - **No gradients anywhere.** Depth comes from flat color blocks, hairline rules, hard borders, and an SVG grain overlay.
 - Fully responsive; honors `prefers-reduced-motion`.
+
+### The crest
+
+Two inline `<symbol>`s at the bottom of `index.html`, reused via `<use>`: `#crest` (full, 40px+)
+and `#crest-mini` (shield + monogram, for the nav where the stars and wordmark turn to mush).
+No image files.
+
+**Colours are inline presentation attributes, not stylesheet rules — don't "tidy" them into
+`style.css`.** Document CSS does not reliably cross the `<use>` shadow boundary, so a rule like
+`.crest .cr-shield{fill:…}` silently drops and every path falls back to SVG's default black
+(a black crest on a black background, which is exactly the bug this replaced).
+
+Custom properties *do* inherit through, so re-theme any instance by setting them on the `<svg>`:
+
+| Property | Controls | Default |
+|---|---|---|
+| `--cr-fill` | shield body | `#E4402A` |
+| `--cr-edge` | shield outline | none |
+| `--cr-detail` | inner outline, band, stars, lettering | `#0D0F10` |
+
+The hero watermark uses this to become scarlet line-art (`--cr-fill:transparent`).
+Its `opacity` is tuned to ~2.1:1 contrast against `--ink`; below about `.4` it vanishes.
 
 ---
 
@@ -93,6 +114,22 @@ Search the repo for `TODO(andy)`. As of first commit:
 - [ ] **Photography** — the page is intentionally type-and-color driven so it looks finished with zero photos. Real training/match photos will lift it further once they exist.
 
 ---
+
+## Mobile
+
+Rendered and measured in headless Chrome at 320×568, 375×667, 390×844, 430×932, 412×915,
+844×390 (landscape), 768×1024, and 1440×900. All pass on: no horizontal overflow, hero CTA
+above the fold, every tap target ≥44px, every form control ≥16px (below that iOS auto-zooms
+on focus and the layout jumps).
+
+Notes for anyone editing:
+
+- `1rem` on form controls resolves against the **undeclared 16px root**, not `body`. If you
+  ever set a `font-size` on `html`, re-check the inputs.
+- The mobile menu locks the body with `position:fixed` and restores `scrollY` on close —
+  anchor links close it with `restore=false` so they don't fight the jump to the section.
+- Landscape phones get their own query (`max-height:520px`) because `100svh` is only ~390px
+  there and the hero would otherwise trap its content.
 
 ## Local development
 

@@ -23,19 +23,49 @@
   /* ── mobile nav ───────────────────────────────────────── */
   var burger = $('.burger');
   var mobnav = $('#mobnav');
-  var setMenu = function (open) {
+  var lockedAt = 0;
+
+  var isOpen = function () { return burger.getAttribute('aria-expanded') === 'true'; };
+
+  /* iOS won't honour overflow:hidden on body alone — pin the scroll
+     position, then restore it exactly on close.
+     `restore` is false when an anchor link closed the menu, so we don't
+     fight the browser's jump to the target section. */
+  var setMenu = function (open, restore) {
+    if (open === isOpen()) return;
     burger.setAttribute('aria-expanded', String(open));
     mobnav.hidden = !open;
+
+    if (open) {
+      lockedAt = window.scrollY;
+      document.body.style.top = -lockedAt + 'px';
+      document.body.classList.add('is-locked');
+      return;
+    }
+
+    document.body.classList.remove('is-locked');
+    document.body.style.top = '';
+    if (restore === false) return;
+    try { window.scrollTo({ top: lockedAt, behavior: 'instant' }); }
+    catch (e) { window.scrollTo(0, lockedAt); }
   };
-  burger.addEventListener('click', function () {
-    setMenu(burger.getAttribute('aria-expanded') !== 'true');
-  });
+
+  burger.addEventListener('click', function () { setMenu(!isOpen()); });
+
   $$('#mobnav a').forEach(function (a) {
-    a.addEventListener('click', function () { setMenu(false); });
+    a.addEventListener('click', function () { setMenu(false, false); });
   });
+
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') setMenu(false);
   });
+
+  /* rotate to landscape / resize to desktop with the menu open → close it,
+     otherwise the body stays locked with no visible way to unlock. */
+  var mq = window.matchMedia('(min-width:1001px)');
+  var onWide = function (e) { if (e.matches) setMenu(false); };
+  if (mq.addEventListener) mq.addEventListener('change', onWide);
+  else if (mq.addListener) mq.addListener(onWide);
 
   /* ── scroll reveal ────────────────────────────────────── */
   var revealables = $$('.reveal');
