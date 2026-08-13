@@ -1,0 +1,14 @@
+{
+  "name": "boldfc-landing",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Bold FC — Taylor, TX youth soccer club landing page + interest capture",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  }
+}

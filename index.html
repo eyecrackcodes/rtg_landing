@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bold FC — Taylor's Next Generation of Soccer</title>
+<meta name="description" content="Bold FC is a new youth soccer club in Taylor, Texas. Player-first development, mentor-based coaching, and a club built for our hometown. Register your interest.">
+<meta name="theme-color" content="#0D0F10">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bold FC — Taylor's Next Generation of Soccer">
+<meta property="og:description" content="A new youth soccer club in Taylor, Texas. Development over trophies. Register your interest.">
+<meta property="og:site_name" content="Bold FC">
+<!-- TODO(andy): add a real og:image (1200x630) at /assets/og.jpg and uncomment -->
+<!-- <meta property="og:image" content="/assets/og.jpg"> -->
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 116'%3E%3Cpath d='M50 2 96 18v40c0 26-22 44-46 56C26 102 4 84 4 58V18z' fill='%23E4402A'/%3E%3Cpath d='M50 12 87 25v33c0 21-18 36-37 46C31 94 13 79 13 58V25z' fill='none' stroke='%230D0F10' stroke-width='4'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#interest">Skip to interest form</a>
+
+<!-- ══════════════════════════════ NAV ══════════════════════════════ -->
+<header class="nav" id="nav">
+  <div class="nav__in">
+    <a class="nav__brand" href="#top" aria-label="Bold FC home">
+      <svg class="crest crest--sm" viewBox="0 0 100 116" aria-hidden="true"><use href="#crest"></use></svg>
+      <span class="nav__word">BOLD<span class="nav__fc">FC</span></span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#why">Why Bold FC</a>
+      <a href="#pillars">The Club</a>
+      <a href="#soon">Coming Soon</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <a class="btn btn--solid btn--sm nav__cta" href="#interest">I'm Interested</a>
+
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mobnav" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="mobnav" id="mobnav" hidden>
+    <a href="#why">Why Bold FC</a>
+    <a href="#pillars">The Club</a>
+    <a href="#soon">Coming Soon</a>
+    <a href="#contact">Contact</a>
+    <a class="mobnav__cta" href="#interest">I'm Interested</a>
+  </div>
+</header>
+
+<!-- ══════════════════════════════ HERO ══════════════════════════════ -->
+<main id="top">
+<section class="hero">
+  <!-- chalked pitch corner, drawn not gradient -->
+  <svg class="hero__pitch" viewBox="0 0 600 600" aria-hidden="true" preserveAspectRatio="xMaxYMax slice">
+    <g fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M600 0 V600 H0"/>
+      <path d="M600 90 H420 V510 H600"/>
+      <path d="M600 200 H520 V400 H600"/>
+      <circle cx="600" cy="300" r="110"/>
+      <path d="M520 540 a20 20 0 0 1 20 20"/>
+      <circle cx="470" cy="300" r="3" fill="currentColor"/>
+    </g>
+  </svg>
+
+  <svg class="hero__crest" viewBox="0 0 100 116" aria-hidden="true"><use href="#crest"></use></svg>
+
+  <div class="wrap hero__in">
+    <p class="eyebrow reveal">Taylor, Texas &nbsp;·&nbsp; Youth Soccer Club</p>
+
+    <h1 class="hero__title">
+      <span class="hero__bold reveal" style="--d:.05s">BOLD</span><span class="hero__fc reveal" style="--d:.18s">FC</span>
+    </h1>
+
+    <p class="hero__tag reveal" style="--d:.26s">Taylor's next generation of soccer starts here.</p>
+
+    <p class="hero__sub reveal" style="--d:.34s">
+      A new club being built for the players of Taylor and Williamson County —
+      real coaching, honest development, and a place to belong.
+    </p>
+
+    <div class="hero__cta reveal" style="--d:.42s">
+      <a class="btn btn--solid" href="#interest">I'm Interested</a>
+      <a class="btn btn--ghost" href="#why">Why Bold FC</a>
+    </div>
+  </div>
+
+  <!-- TODO(andy): confirm age bands + founding season before launch -->
+  <div class="hero__strip">
+    <div class="wrap hero__stripin">
+      <div class="fact"><span class="fact__k">Home</span><span class="fact__v">Taylor, TX</span></div>
+      <div class="fact"><span class="fact__k">Status</span><span class="fact__v">Founding Season</span></div>
+      <div class="fact"><span class="fact__k">Players</span><span class="fact__v">Boys &amp; Girls</span></div>
+      <div class="fact"><span class="fact__k">Tryouts</span><span class="fact__v">Dates TBA</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ TICKER ══════════════════════════════ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <span class="ticker__set">
+      <b>Play Bold</b><i></i><b>Taylor, Texas</b><i></i><b>Player First</b><i></i><b>Development Over Trophies</b><i></i><b>Every Player, Every Week</b><i></i>
+    </span>
+    <span class="ticker__set">
+      <b>Play Bold</b><i></i><b>Taylor, Texas</b><i></i><b>Player First</b><i></i><b>Development Over Trophies</b><i></i><b>Every Player, Every Week</b><i></i>
+    </span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ WHY ══════════════════════════════ -->
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="why__head">
+      <p class="eyebrow eyebrow--dark reveal">Why Bold FC?</p>
+      <h2 class="why__lede reveal" style="--d:.08s">
+        Taylor is growing fast. Its players deserve a club that
+        <em>grows with them</em> — not one they have to drive an hour to find.
+      </h2>
+    </div>
+
+    <div class="why__grid">
+      <article class="reason reveal">
+        <span class="reason__n">A</span>
+        <h3>Built here, for here.</h3>
+        <p>Bold FC is a hometown club. Training, teams, and a soccer home in Taylor — so families spend their evenings on the pitch instead of on the highway.</p>
+      </article>
+      <article class="reason reveal" style="--d:.1s">
+        <span class="reason__n">B</span>
+        <h3>Development over trophies.</h3>
+        <p>Winning matters. It just isn't the point. We measure a season by how much better every player is at the end of it — starters and subs alike.</p>
+      </article>
+      <article class="reason reveal" style="--d:.2s">
+        <span class="reason__n">C</span>
+        <h3>Every player, every week.</h3>
+        <p>No one gets parked on the bench to protect a scoreline. Minutes are earned, but every player on the roster is coached, challenged, and played.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ PILLARS ══════════════════════════════ -->
+<section class="pillars" id="pillars">
+  <div class="wrap">
+    <p class="eyebrow reveal">The Club</p>
+  </div>
+
+  <!-- 01 -->
+  <article class="pillar" id="philosophy">
+    <div class="wrap pillar__in">
+      <div class="pillar__num" aria-hidden="true">01</div>
+      <div class="pillar__body">
+        <p class="pillar__kicker">Pillar 01</p>
+        <h3 class="pillar__h reveal">Our Philosophy</h3>
+        <p class="pillar__lead reveal" style="--d:.06s">Play bold. Train with purpose. Compete with respect.</p>
+        <p class="reveal" style="--d:.12s">
+          We want players who take the game on — who receive on the back foot, turn into pressure,
+          and try the pass. That kind of courage is built, not born, and it only grows in an
+          environment where a mistake made at speed is treated as evidence a player is learning.
+        </p>
+        <p class="reveal" style="--d:.16s">
+          Bold isn't reckless. It's a standard: be brave on the ball, be honest off it,
+          and treat opponents, officials, and teammates like the game depends on them. Because it does.
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <!-- 02 -->
+  <article class="pillar pillar--flip" id="development">
+    <div class="wrap pillar__in">
+      <div class="pillar__num" aria-hidden="true">02</div>
+      <div class="pillar__body">
+        <p class="pillar__kicker">Pillar 02</p>
+        <h3 class="pillar__h reveal">Player Development</h3>
+        <p class="pillar__lead reveal" style="--d:.06s">A plan for the player, not just a lineup for Saturday.</p>
+        <p class="reveal" style="--d:.12s">
+          Every player gets clear, specific priorities to work on and regular feedback on them.
+          Training is built around small-sided games and high touch counts, so players solve real
+          problems at real speed instead of standing in lines.
+        </p>
+        <ul class="ticks reveal" style="--d:.16s">
+          <li>Individual development focus, reviewed through the season</li>
+          <li>Position-specific work — including dedicated goalkeeper training</li>
+          <li>Small-sided, high-repetition sessions</li>
+          <li>An honest pathway as players and age groups grow</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- 03 -->
+  <article class="pillar" id="coaching">
+    <div class="wrap pillar__in">
+      <div class="pillar__num" aria-hidden="true">03</div>
+      <div class="pillar__body">
+        <p class="pillar__kicker">Pillar 03</p>
+        <h3 class="pillar__h reveal">Coaching</h3>
+        <p class="pillar__lead reveal" style="--d:.06s">Mentors first. Coaches second. Never just scoreboard managers.</p>
+        <p class="reveal" style="--d:.12s">
+          Our staff is being built around coaches who are qualified, still learning themselves, and
+          genuinely good with young people. The person a kid becomes over four years in this club
+          matters more than any single result, and we hire like we believe that.
+        </p>
+        <p class="reveal" style="--d:.16s">
+          Bold FC is founded by coaches with deep roots in Central Texas youth soccer and
+          specialist academy training — the same standards, now close to home.
+          <!-- TODO(andy): swap this paragraph for a real founder bio + headshot (Andy + partner). -->
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <!-- 04 -->
+  <article class="pillar pillar--flip" id="community">
+    <div class="wrap pillar__in">
+      <div class="pillar__num" aria-hidden="true">04</div>
+      <div class="pillar__body">
+        <p class="pillar__kicker">Pillar 04</p>
+        <h3 class="pillar__h reveal">Community</h3>
+        <p class="pillar__lead reveal" style="--d:.06s">A club a town can point at and call its own.</p>
+        <p class="reveal" style="--d:.12s">
+          Great clubs aren't built by coaches alone. They're built by families in camp chairs,
+          volunteers lining fields, and local businesses who put their name on a kit. Bold FC is
+          being built to be part of Taylor — accessible, welcoming, and here for the long run.
+        </p>
+        <p class="reveal" style="--d:.16s">
+          If you want to help — coach, sponsor, volunteer, or just spread the word — tell us in the
+          form below. Founding families shape what this club becomes.
+        </p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ══════════════════════════════ COMING SOON ══════════════════════════════ -->
+<section class="soon" id="soon">
+  <div class="wrap">
+    <div class="soon__head">
+      <p class="eyebrow reveal">Coming Soon</p>
+      <h2 class="soon__h reveal" style="--d:.06s">What's next</h2>
+      <p class="soon__sub reveal" style="--d:.12s">
+        We're in the build phase. Get on the list and you'll hear about each of these first —
+        before anything goes public.
+      </p>
+    </div>
+
+    <!-- TODO(andy): add real dates as they're locked; swap "TBA" for the date + set data-state="live" -->
+    <ol class="road">
+      <li class="road__i reveal">
+        <span class="road__tag" data-state="tba">TBA</span>
+        <h3>Interest List Opens</h3>
+        <p>Tell us about your player. We build age groups around who shows up.</p>
+        <span class="road__now">Now open</span>
+      </li>
+      <li class="road__i reveal" style="--d:.08s">
+        <span class="road__tag" data-state="tba">TBA</span>
+        <h3>Open Sessions &amp; Tryouts</h3>
+        <p>Free open training so players and families can see how we coach before committing.</p>
+      </li>
+      <li class="road__i reveal" style="--d:.16s">
+        <span class="road__tag" data-state="tba">TBA</span>
+        <h3>Age Groups &amp; Teams Announced</h3>
+        <p>Rosters, coaches, and training schedule by age group.</p>
+      </li>
+      <li class="road__i reveal" style="--d:.24s">
+        <span class="road__tag" data-state="tba">TBA</span>
+        <h3>First Competitive Season</h3>
+        <p>Bold FC takes the field. Kits, league, and home ground details to follow.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ INTEREST FORM ══════════════════════════════ -->
+<section class="interest" id="interest">
+  <div class="wrap interest__in">
+
+    <div class="interest__head">
+      <p class="eyebrow reveal">Interest Form</p>
+      <h2 class="interest__h reveal" style="--d:.06s">I'm Interested</h2>
+      <p class="interest__sub reveal" style="--d:.12s">
+        Two minutes. No commitment, no cost. We'll reach out as soon as tryout dates
+        and age groups are set — and your answers directly shape how we build them.
+      </p>
+    </div>
+
+    <div class="card reveal" style="--d:.1s">
+      <div class="card__top">
+        <svg class="crest crest--card" viewBox="0 0 100 116" aria-hidden="true"><use href="#crest"></use></svg>
+        <div>
+          <p class="card__label">Player Interest Card</p>
+          <p class="card__meta">Bold FC &nbsp;·&nbsp; Taylor, TX &nbsp;·&nbsp; Founding Season</p>
+        </div>
+      </div>
+
+      <form class="form" id="interestForm" novalidate>
+        <!-- honeypot: hidden from humans, catches bots -->
+        <div class="hp" aria-hidden="true">
+          <label>Do not fill this in <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <fieldset class="fset">
+          <legend class="fset__l"><span class="fset__n">01</span> Parent / Guardian</legend>
+          <div class="grid2">
+            <div class="field">
+              <label for="parentName">Parent name <span class="req">*</span></label>
+              <input id="parentName" name="parentName" type="text" autocomplete="name" required placeholder="Jordan Reyes">
+              <p class="err" data-err="parentName"></p>
+            </div>
+            <div class="field">
+              <label for="phone">Phone <span class="req">*</span></label>
+              <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(512) 555-0134">
+              <p class="err" data-err="phone"></p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required placeholder="you@email.com">
+            <p class="err" data-err="email"></p>
+          </div>
+        </fieldset>
+
+        <fieldset class="fset">
+          <legend class="fset__l"><span class="fset__n">02</span> Player</legend>
+          <div class="grid2">
+            <div class="field">
+              <label for="playerName">Player name <span class="req">*</span></label>
+              <input id="playerName" name="playerName" type="text" required placeholder="Alex Reyes">
+              <p class="err" data-err="playerName"></p>
+            </div>
+            <div class="field">
+              <label for="age">Age <span class="req">*</span></label>
+              <input id="age" name="age" type="number" min="4" max="19" step="1" inputmode="numeric" required placeholder="12">
+              <p class="err" data-err="age"></p>
+            </div>
+          </div>
+
+          <div class="grid2">
+            <div class="field">
+              <label for="birthYear">Birth year <span class="req">*</span></label>
+              <div class="sel">
+                <select id="birthYear" name="birthYear" required>
+                  <option value="" selected disabled>Select year</option>
+                  <option>2022</option><option>2021</option><option>2020</option>
+                  <option>2019</option><option>2018</option><option>2017</option>
+                  <option>2016</option><option>2015</option><option>2014</option>
+                  <option>2013</option><option>2012</option><option>2011</option>
+                  <option>2010</option><option>2009</option><option>2008</option>
+                  <option>2007</option>
+                </select>
+              </div>
+              <p class="err" data-err="birthYear"></p>
+            </div>
+            <div class="field">
+              <label for="position">Position <span class="req">*</span></label>
+              <div class="sel">
+                <select id="position" name="position" required>
+                  <option value="" selected disabled>Select position</option>
+                  <option>Goalkeeper</option>
+                  <option>Center Back</option>
+                  <option>Full Back / Wing Back</option>
+                  <option>Defensive Midfield</option>
+                  <option>Center Midfield</option>
+                  <option>Attacking Midfield</option>
+                  <option>Winger</option>
+                  <option>Forward / Striker</option>
+                  <option>Utility — plays anywhere</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
+              <p class="err" data-err="position"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="currentClub">Current club <span class="opt">optional</span></label>
+            <input id="currentClub" name="currentClub" type="text" placeholder="Club name, or “none / rec league”">
+            <p class="hint">No club yet is completely fine — plenty of our players will be new.</p>
+          </div>
+        </fieldset>
+
+        <fieldset class="fset">
+          <legend class="fset__l"><span class="fset__n">03</span> The Important One</legend>
+          <div class="field">
+            <label for="looking">What are you looking for in a soccer club? <span class="req">*</span></label>
+            <textarea id="looking" name="looking" rows="5" required
+              placeholder="Be honest — better coaching, more playing time, a shorter drive, a place your kid actually wants to be. This is the answer that shapes how we build Bold FC."></textarea>
+            <div class="counter"><span class="hint">Anything you tell us here goes straight to the coaching staff.</span><span id="count">0</span></div>
+            <p class="err" data-err="looking"></p>
+          </div>
+        </fieldset>
+
+        <div class="form__foot">
+          <button class="btn btn--solid btn--lg" type="submit" id="submitBtn">
+            <span class="btn__t">Send My Interest</span>
+          </button>
+          <p class="form__note">We'll only use this to contact you about Bold FC. No lists, no spam, ever.</p>
+        </div>
+
+        <p class="form__fail" id="formFail" hidden role="alert"></p>
+      </form>
+
+      <!-- success state -->
+      <div class="done" id="done" hidden>
+        <svg class="done__mark" viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M14 24.5 21 31.5 34.5 18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+        </svg>
+        <h3>You're on the list.</h3>
+        <p id="doneMsg">Thanks — we've got <b>your player's</b> details. You'll be among the first to hear about open sessions, tryout dates, and age groups.</p>
+        <p class="done__ps">Know another family who'd want in? Send them <b>boldfctaylor.com</b>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ CONTACT ══════════════════════════════ -->
+<section class="contact" id="contact">
+  <div class="wrap contact__in">
+    <div class="contact__l">
+      <p class="eyebrow reveal">Contact</p>
+      <h2 class="contact__h reveal" style="--d:.06s">Questions before you sign up?</h2>
+      <p class="reveal" style="--d:.12s">
+        Coaches, sponsors, volunteers, and curious parents — all welcome. Reach out and a
+        real person will get back to you.
+      </p>
+    </div>
+
+    <!-- TODO(andy): replace with the real club email / phone / social before going live -->
+    <ul class="contact__r">
+      <li class="reveal">
+        <span class="contact__k">Email</span>
+        <a class="contact__v" href="mailto:hello@boldfctaylor.com">hello@boldfctaylor.com</a>
+      </li>
+      <li class="reveal" style="--d:.06s">
+        <span class="contact__k">Phone</span>
+        <a class="contact__v" href="tel:+18133856320">813.385.6320</a>
+      </li>
+      <li class="reveal" style="--d:.12s">
+        <span class="contact__k">Based in</span>
+        <span class="contact__v">Taylor, Texas</span>
+      </li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<!-- ══════════════════════════════ FOOTER ══════════════════════════════ -->
+<footer class="foot">
+  <div class="wrap foot__in">
+    <svg class="crest crest--foot" viewBox="0 0 100 116" aria-hidden="true"><use href="#crest"></use></svg>
+    <div class="foot__mid">
+      <p class="foot__word">BOLD FC</p>
+      <p class="foot__tag">Taylor's next generation of soccer starts here.</p>
+    </div>
+    <div class="foot__r">
+      <a class="btn btn--ghost btn--sm" href="#interest">I'm Interested</a>
+      <p class="foot__legal">&copy; <span id="yr">2026</span> Bold FC · Taylor, Texas</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════ CREST (single source, reused) ══════════════════════════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="crest" viewBox="0 0 100 116">
+    <path class="cr-shield" d="M50 2 96 18v40c0 26-22 44-46 56C26 102 4 84 4 58V18z"/>
+    <path class="cr-inner" d="M50 11 88 24v34c0 21.5-18.5 37-38 47.5C30.5 95 12 79.5 12 58V24z"/>
+    <path class="cr-band" d="M12 38h76"/>
+    <g class="cr-stars">
+      <path d="M32 25l1.9 4.2 4.6.5-3.4 3.1.9 4.5L32 35.1 27.9 37.3l.9-4.5-3.4-3.1 4.6-.5z"/>
+      <path d="M50 22l2.2 4.8 5.3.6-3.9 3.6 1 5.2L50 33.6 45.4 36.2l1-5.2-3.9-3.6 5.3-.6z"/>
+      <path d="M68 25l1.9 4.2 4.6.5-3.4 3.1.9 4.5L68 35.1 63.9 37.3l.9-4.5-3.4-3.1 4.6-.5z"/>
+    </g>
+    <text class="cr-mono" x="50" y="72" text-anchor="middle">BFC</text>
+    <text class="cr-est" x="50" y="87" text-anchor="middle">TAYLOR</text>
+  </symbol>
+</svg>
+
+<script src="/js/app.js" defer></script>
+</body>
+</html>
