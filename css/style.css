@@ -21,6 +21,13 @@
                             TEXT sitting on .why or .interest. */
   --pitch:    #17301C;   /* deep green band, same hue family as the lime */
 
+  /* The system is volt + black, which leaves nowhere to put a failure
+     state — error, success and "now open" all landed on --bold, so a
+     mistyped email rendered in the same colour as the success tick.
+     Amber, not red: RTG's palette has no red in it, and amber sits far
+     enough off volt's hue (39° vs 75°) to read as a different signal. */
+  --alert:    #FFB020;   /* validation + failure ONLY. 9.7:1 on --ink */
+
   /* raw channels so alpha variants compose from the same source —
      every rgba() in this file resolves through these two */
   --ink-rgb:  15,26,32;
@@ -160,7 +167,16 @@ em{font-style:normal;color:var(--bold-dk)} /* only used in .why__lede, on bone *
   transition:color .16s,border-color .16s;
 }
 .nav__links a:hover{color:var(--bone);border-bottom-color:var(--bold)}
-.nav__cta{flex:none}
+/* The hero already carries a full-size lime CTA. Repeating it in the bar
+   put two lime pills of near-identical area in one viewport, competing at
+   the same volume — so the bar CTA stays quiet until the hero one scrolls
+   out of view, then takes over as the persistent conversion path. */
+.nav__cta{
+  flex:none;background:transparent;color:var(--bone);border-color:var(--line-dk);
+}
+.nav__cta:hover{background:transparent;border-color:var(--bold);color:var(--bold)}
+.nav[data-cta="on"] .nav__cta{background:var(--bold);color:var(--ink);border-color:var(--bold)}
+.nav[data-cta="on"] .nav__cta:hover{background:var(--bone);border-color:var(--bone);color:var(--ink)}
 
 .burger{
   display:none;background:none;border:0;cursor:pointer;margin-left:auto;
@@ -414,7 +430,7 @@ em{font-style:normal;color:var(--bold-dk)} /* only used in .why__lede, on bone *
 .field input:focus,.field textarea:focus,.field select:focus{
   outline:none;border-color:var(--bold);background:var(--ink-2);
 }
-.field input[aria-invalid="true"],.field textarea[aria-invalid="true"],.field select[aria-invalid="true"]{border-color:var(--bold)}
+.field input[aria-invalid="true"],.field textarea[aria-invalid="true"],.field select[aria-invalid="true"]{border-color:var(--alert)}
 
 /* custom select — no native chrome arrow */
 .sel{position:relative}
@@ -430,14 +446,14 @@ em{font-style:normal;color:var(--bold-dk)} /* only used in .why__lede, on bone *
 .hint{font-size:.78rem;color:var(--bone-3);margin-top:8px;line-height:1.5}
 .counter{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
 .counter #count{font-size:.72rem;font-weight:700;color:var(--bone-3);letter-spacing:.08em;flex:none;margin-top:8px}
-.err{font-size:.78rem;color:var(--bold);font-weight:600;margin-top:8px;display:none}
+.err{font-size:.78rem;color:var(--alert);font-weight:600;margin-top:8px;display:none}
 .err[data-on]{display:block}
 
 .form__foot{margin-top:32px;padding-top:28px;border-top:1px solid var(--line-dk);display:flex;flex-wrap:wrap;align-items:center;gap:18px 24px}
 .form__note{font-size:.78rem;color:var(--bone-3);max-width:30ch;line-height:1.5}
 .form__fail{
-  margin-top:18px;padding:14px 16px;border:1px solid var(--bold);
-  color:var(--bold);font-size:.88rem;font-weight:600;
+  margin-top:18px;padding:14px 16px;border:1px solid var(--alert);
+  color:var(--alert);font-size:.88rem;font-weight:600;
 }
 
 .done{padding:clamp(40px,6vw,72px) clamp(22px,3vw,34px);text-align:center}

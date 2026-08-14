@@ -20,6 +20,17 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  /* Hand the bar CTA its loud treatment only once the hero CTA is gone,
+     so the two never shout at the same time. */
+  var heroCta = $('.hero__cta .btn--solid');
+  if (heroCta && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      nav.setAttribute('data-cta', entries[0].isIntersecting ? 'off' : 'on');
+    }, { threshold: 0 }).observe(heroCta);
+  } else {
+    nav.setAttribute('data-cta', 'on');
+  }
+
   /* ── mobile nav ───────────────────────────────────────── */
   var burger = $('.burger');
   var mobnav = $('#mobnav');

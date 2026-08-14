@@ -44,6 +44,48 @@ top is fine everywhere (9.9:1).
 All alpha variants compose from `--ink-rgb` / `--bone-rgb`, so there are no loose
 `rgba()` literals to miss on a future re-theme.
 
+### Colour roles
+
+RTG is a **two-colour system** — volt green plus black, with white as the only true
+third colour and photography carrying the rest. Volt reads as *goalkeeper* to anyone
+in the sport before they've read a word (Nike volt, adidas solar yellow are the
+reference points in GK glove and kit design). Bold FC inherits that read.
+
+| Role | Ours | Where it shows |
+|---|---|---|
+| Primary | `--bold` volt | Crest, CTAs, ticker band, eyebrows, section accents |
+| Base | `--ink` / `--ink-2` | Page ground, nav bar, pillars band, form card |
+| Surface | `--ink-3` | Input fields, share buttons — the lifted tier |
+| Text | `--bone` / `--bone-2` | Body copy over dark |
+| Failure | `--alert` amber | Validation errors only — see below |
+| "Fifth colour" | *photography* | Not yet present. See the TODO list. |
+
+**Why amber exists.** A two-colour system has nowhere to put a failure state. Error,
+success and "now open" all landed on `--bold`, which meant a mistyped email rendered
+in the same colour as the success tick. `--alert` (`#FFB020`, 9.7:1 on ink) is
+failure-only; success deliberately keeps the brand volt. Amber rather than red
+because RTG's palette contains no red at all, and amber's hue sits ~36° off volt —
+far enough to read as a different signal without importing a foreign colour.
+
+**Volume discipline.** Volt is loud, so only one element may be loud at a time. The
+bar CTA renders as an outline until the hero CTA scrolls out of view, then takes over
+(`.nav[data-cta="on"]`, driven by an IntersectionObserver on the hero button).
+Without that, two lime pills of near-identical area competed above the fold.
+
+### When photography lands
+
+The design is deliberately type-and-colour driven so it looks finished with zero
+photos. When real training and match images arrive, two tokens make them safe:
+
+```css
+--scrim:      rgba(0,0,0,.55);   /* over any photo carrying volt or white text */
+--volt-tint:  #F1F8D0;           /* volt at ~12% — light-surface callouts */
+```
+
+Neither is in `style.css` yet, because neither has a job yet. Add them at the point
+you add the first image — **volt and white are both illegible over unscrimmed grass
+and kit**, which is exactly why RTG scrims every hero photo it uses.
+
 **Colour lives in four places, not one.** The token block covers the CSS; a palette change
 also needs `index.html`'s `theme-color` meta, its favicon data-URI, the crest `<symbol>`
 presentation attributes, and the lead-email template in `api/interest.js` (email clients
