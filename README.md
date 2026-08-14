@@ -24,12 +24,30 @@ rtg/
 
 ## Design system
 
-| Token | Value | Use |
-|---|---|---|
-| `--ink` | `#0D0F10` | Page ground |
-| `--bone` | `#F2EEE6` | Inverted sections, body text |
-| `--bold` | `#E4402A` | The club scarlet — CTAs, accents, crest |
-| `--pitch` | `#1C3A2B` | Deep green, "Coming Soon" band |
+Matched to **rtgacademy.com**, sampled off the live site rather than eyeballed —
+signature lime `rgb(181,220,16)`, dark slate `rgb(24,37,44)`, white.
+
+| Token | Value | Use | Contrast |
+|---|---|---|---|
+| `--ink` | `#0F1A20` | Page ground — RTG slate, darkened | — |
+| `--ink-2` | `#18252C` | RTG's actual slate — pillars band | — |
+| `--bone` | `#F3F5F1` | Inverted sections | 15.3:1 on ink |
+| `--bold` | `#B5DC10` | RTG lime — CTAs, accents, crest | 9.9:1 on ink |
+| `--bold-dk` | `#4A6B00` | **The accent for light surfaces** | 5.6:1 on bone |
+| `--pitch` | `#17301C` | Deep green, "Coming Soon" band | — |
+
+⚠ **`--bold` is unusable as text on `--bone` — lime on near-white measures 1.45:1.**
+Any accent-coloured *text* on a light section (`.why`, `.interest`) must use `--bold-dk`.
+That's what `.eyebrow--dark` and `em` are for. Lime as a *background* with dark text on
+top is fine everywhere (9.9:1).
+
+All alpha variants compose from `--ink-rgb` / `--bone-rgb`, so there are no loose
+`rgba()` literals to miss on a future re-theme.
+
+**Colour lives in four places, not one.** The token block covers the CSS; a palette change
+also needs `index.html`'s `theme-color` meta, its favicon data-URI, the crest `<symbol>`
+presentation attributes, and the lead-email template in `api/interest.js` (email clients
+don't support custom properties, so those stay literal).
 
 - **Type:** Archivo Black (display) + Archivo (body). One family, two weights of personality.
 - **No gradients anywhere.** Depth comes from flat color blocks, hairline rules, hard borders, and an SVG grain overlay.
@@ -50,12 +68,14 @@ Custom properties *do* inherit through, so re-theme any instance by setting them
 
 | Property | Controls | Default |
 |---|---|---|
-| `--cr-fill` | shield body | `#E4402A` |
+| `--cr-fill` | shield body | `#B5DC10` |
 | `--cr-edge` | shield outline | none |
-| `--cr-detail` | inner outline, band, stars, lettering | `#0D0F10` |
+| `--cr-detail` | inner outline, band, stars, lettering | `#0F1A20` |
 
-The hero watermark uses this to become scarlet line-art (`--cr-fill:transparent`).
-Its `opacity` is tuned to ~2.1:1 contrast against `--ink`; below about `.4` it vanishes.
+The hero watermark uses this to become lime line-art (`--cr-fill:transparent`).
+Its `opacity` is tuned by measurement to ~2.2:1 against `--ink` — visible as a deliberate
+mark, quiet enough not to fight the headline. Lime is much brighter than the scarlet it
+replaced, so it needs a *lower* opacity to land at the same perceived weight.
 
 ---
 

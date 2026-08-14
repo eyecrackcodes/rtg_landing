@@ -1,23 +1,36 @@
 /* ═══════════════════════════════════════════════════════════════
    BOLD FC — Taylor, TX
    Hand-built stylesheet. No framework, no utility classes,
-   no gradients anywhere. Flat ink, bone, and one loud scarlet.
+   no gradients anywhere. Flat ink, bone, and one loud lime.
    ═══════════════════════════════════════════════════════════════ */
 
 /* ── 1. TOKENS ─────────────────────────────────────────────── */
 :root{
-  --ink:      #0D0F10;
-  --ink-2:    #15181A;
-  --ink-3:    #1F2427;
-  --bone:     #F2EEE6;
-  --bone-2:   #CFC8BA;
-  --bone-3:   #8D877C;
-  --bold:     #E4402A;
-  --bold-dk:  #C22F1C;
-  --pitch:    #1C3A2B;
+  /* Palette matched to rtgacademy.com, sampled off the live site:
+     signature lime rgb(181,220,16), dark slate rgb(24,37,44), white. */
+  --ink:      #0F1A20;   /* page ground — slate, darkened */
+  --ink-2:    #18252C;   /* RTG's actual dark slate */
+  --ink-3:    #223038;   /* lifted: input fields */
+  --bone:     #F3F5F1;
+  --bone-2:   #C6CEC7;   /* body copy on dark — 11.0:1 */
+  --bone-3:   #808B84;   /* dim labels — 5.0:1 */
+  --bold:     #B5DC10;   /* RTG lime. On --ink: 9.9:1 */
+  --bold-dk:  #4A6B00;   /* the accent darkened FOR LIGHT SURFACES.
+                            Lime on --bone is 1.45:1 — invisible. This
+                            is 5.6:1. Use it for any accent-coloured
+                            TEXT sitting on .why or .interest. */
+  --pitch:    #17301C;   /* deep green band, same hue family as the lime */
 
-  --line-lt:  rgba(13,15,16,.14);
-  --line-dk:  rgba(242,238,230,.16);
+  /* raw channels so alpha variants compose from the same source —
+     every rgba() in this file resolves through these two */
+  --ink-rgb:  15,26,32;
+  --bone-rgb: 243,245,241;
+
+  --bone-ink: #454C46;   /* body copy on bone — 8.1:1 */
+  --ink-ph:   #6B7670;   /* input placeholders on ink */
+
+  --line-lt:  rgba(var(--ink-rgb),.14);
+  --line-dk:  rgba(var(--bone-rgb),.16);
 
   --f-disp:  "Archivo Black", "Arial Black", Impact, sans-serif;
   --f-body:  "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -81,10 +94,11 @@ body::after{
   color:var(--bold);display:flex;align-items:center;gap:14px;
 }
 .eyebrow::after{content:"";flex:1;height:1px;background:var(--line-dk);max-width:180px}
-.eyebrow--dark{color:var(--bold)}
+/* --dark = "sits on a light section". Must use the darkened accent. */
+.eyebrow--dark{color:var(--bold-dk)}
 .eyebrow--dark::after{background:var(--line-lt)}
 
-em{font-style:normal;color:var(--bold)}
+em{font-style:normal;color:var(--bold-dk)} /* only used in .why__lede, on bone */
 
 /* ── 4. BUTTONS ────────────────────────────────────────────── */
 .btn{
@@ -113,7 +127,7 @@ em{font-style:normal;color:var(--bold)}
      --cr-fill    shield body
      --cr-edge    shield outline
      --cr-detail  inner outline, band, stars, lettering
-   Defaults live on the <symbol> itself: scarlet shield, ink detail. */
+   Defaults live on the <symbol> itself: lime shield, slate detail. */
 .crest--sm{width:26px;height:auto}
 .crest--card{width:44px;height:auto;flex:none}
 .crest--foot{width:56px;height:auto;flex:none}
@@ -125,7 +139,7 @@ em{font-style:normal;color:var(--bold)}
   transition:background-color .3s var(--ease),border-color .3s var(--ease);
 }
 .nav[data-stuck="1"]{
-  background:rgba(13,15,16,.92);border-bottom-color:var(--line-dk);
+  background:rgba(var(--ink-rgb),.92);border-bottom-color:var(--line-dk);
   -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
 }
 .nav__in{
@@ -178,7 +192,7 @@ em{font-style:normal;color:var(--bold)}
   padding-top:calc(var(--bar) + 40px);
   overflow:hidden;
 }
-/* Line-art treatment: hollow shield, everything drawn in scarlet.
+/* Line-art treatment: hollow shield, everything drawn in the lime.
    A filled crest at low opacity just muddies into the black ground
    and its ink detailing disappears entirely. */
 .hero__crest{
@@ -187,8 +201,9 @@ em{font-style:normal;color:var(--bold)}
   --cr-fill:transparent;
   --cr-edge:var(--bold);
   --cr-detail:var(--bold);
-  opacity:.55; /* measured ~2.1:1 against --ink — reads as a deliberate
-                  watermark; below ~.4 it disappears into the black */
+  opacity:.32; /* measured ~2.2:1 against --ink. Lime is far brighter than
+                  the scarlet this replaced, so it needs a LOWER opacity to
+                  sit at the same weight — at .55 it shouts. */
 }
 .hero__in{flex:1;display:flex;flex-direction:column;justify-content:center;padding-block:clamp(40px,7vh,90px)}
 .hero__in .eyebrow{margin-bottom:clamp(18px,3vh,32px)}
@@ -243,7 +258,11 @@ em{font-style:normal;color:var(--bold)}
 
 /* ── 9. WHY ────────────────────────────────────────────────── */
 .why{background:var(--bone);color:var(--ink);padding-block:clamp(72px,10vw,132px)}
-.why__head{max-width:26ch;margin-bottom:clamp(48px,7vw,86px)}
+/* No max-width here: `ch` resolves against THIS element's font (body,
+   ~17.5px), which would clamp the display-size lede inside to ~260px
+   and wrap it at a couple of words per line. The lede sets its own
+   measure below, in its own much larger `ch`. */
+.why__head{margin-bottom:clamp(48px,7vw,86px)}
 .why__lede{
   margin-top:24px;font-family:var(--f-disp);font-weight:400;
   font-size:clamp(1.65rem,4.2vw,3.1rem);line-height:1.08;letter-spacing:-.025em;
@@ -255,11 +274,11 @@ em{font-style:normal;color:var(--bold)}
 .reason+.reason::before{content:"";position:absolute;left:0;top:0;bottom:24px;width:1px;background:var(--line-lt)}
 .reason__n{
   display:inline-flex;align-items:center;justify-content:center;
-  width:34px;height:34px;background:var(--bold);color:var(--ink);
+  width:34px;height:34px;background:var(--bold-dk);color:var(--bone);
   font-family:var(--f-disp);font-size:.9rem;margin-bottom:22px;
 }
 .reason h3{font-family:var(--f-disp);font-weight:400;font-size:1.32rem;line-height:1.15;letter-spacing:-.02em;margin-bottom:12px}
-.reason p{color:#4A4740;font-size:1rem}
+.reason p{color:var(--bone-ink);font-size:1rem}
 
 /* ── 10. PILLARS ───────────────────────────────────────────── */
 .pillars{background:var(--ink-2);padding-block:clamp(70px,9vw,120px) 0}
@@ -274,7 +293,7 @@ em{font-style:normal;color:var(--bold)}
 .pillar__num{
   font-family:var(--f-disp);font-weight:400;
   font-size:clamp(4.5rem,11vw,10.5rem);line-height:.78;letter-spacing:-.05em;
-  color:transparent;-webkit-text-stroke:1.5px rgba(242,238,230,.22);
+  color:transparent;-webkit-text-stroke:1.5px rgba(var(--bone-rgb),.22);
   position:sticky;top:calc(var(--bar) + 30px);user-select:none;
 }
 .pillar__body{max-width:60ch}
@@ -309,28 +328,28 @@ em{font-style:normal;color:var(--bold)}
   margin-top:22px;font-family:var(--f-disp);font-weight:400;
   font-size:clamp(2.1rem,5.5vw,4rem);line-height:1;letter-spacing:-.03em;
 }
-.soon__sub{margin-top:18px;color:rgba(242,238,230,.72)}
+.soon__sub{margin-top:18px;color:rgba(var(--bone-rgb),.72)}
 
 .road{
   display:grid;grid-template-columns:repeat(4,1fr);
-  border-top:1px solid rgba(242,238,230,.2);
+  border-top:1px solid rgba(var(--bone-rgb),.2);
 }
 .road__i{padding:30px 26px 34px 0;position:relative}
 .road__i+.road__i{padding-left:26px}
-.road__i+.road__i::before{content:"";position:absolute;left:0;top:0;bottom:20px;width:1px;background:rgba(242,238,230,.18)}
+.road__i+.road__i::before{content:"";position:absolute;left:0;top:0;bottom:20px;width:1px;background:rgba(var(--bone-rgb),.18)}
 .road__i::after{
   content:"";position:absolute;top:-5px;left:0;width:9px;height:9px;
-  background:rgba(242,238,230,.32);transform:rotate(45deg);
+  background:rgba(var(--bone-rgb),.32);transform:rotate(45deg);
 }
 .road__i:first-child::after{background:var(--bold)}
 .road__tag{
   display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.2em;
-  text-transform:uppercase;color:rgba(242,238,230,.6);
-  border:1px solid rgba(242,238,230,.28);padding:5px 10px;margin-bottom:18px;
+  text-transform:uppercase;color:rgba(var(--bone-rgb),.6);
+  border:1px solid rgba(var(--bone-rgb),.28);padding:5px 10px;margin-bottom:18px;
 }
 .road__i:first-child .road__tag{color:var(--ink);background:var(--bold);border-color:var(--bold)}
 .road__i h3{font-family:var(--f-disp);font-weight:400;font-size:1.18rem;line-height:1.16;letter-spacing:-.02em;margin-bottom:10px}
-.road__i p{font-size:.95rem;color:rgba(242,238,230,.7)}
+.road__i p{font-size:.95rem;color:rgba(var(--bone-rgb),.7)}
 .road__now{
   display:inline-block;margin-top:14px;font-size:.68rem;font-weight:700;
   letter-spacing:.16em;text-transform:uppercase;color:var(--bold);
@@ -344,7 +363,7 @@ em{font-style:normal;color:var(--bold)}
   margin-top:22px;font-family:var(--f-disp);font-weight:400;
   font-size:clamp(2.6rem,7vw,5.2rem);line-height:.92;letter-spacing:-.04em;
 }
-.interest__sub{margin-top:22px;color:#4A4740;max-width:38ch}
+.interest__sub{margin-top:22px;color:var(--bone-ink);max-width:38ch}
 
 .card{background:var(--ink);color:var(--bone);border:2px solid var(--ink)}
 .card__top{
@@ -380,14 +399,14 @@ em{font-style:normal;color:var(--bold)}
 .opt{color:var(--bone-3);font-weight:600;letter-spacing:.1em;margin-left:4px}
 
 .field input,.field textarea,.field select{
-  width:100%;background:var(--ink-3);border:1px solid rgba(242,238,230,.14);
+  width:100%;background:var(--ink-3);border:1px solid rgba(var(--bone-rgb),.14);
   color:var(--bone);padding:14px 15px;font-size:1rem;font-family:var(--f-body);
   transition:border-color .16s var(--ease),background-color .16s var(--ease);
   border-radius:0;
 }
 .field textarea{resize:vertical;min-height:118px;line-height:1.55}
-.field input::placeholder,.field textarea::placeholder{color:#6E6960}
-.field input:hover,.field textarea:hover,.field select:hover{border-color:rgba(242,238,230,.3)}
+.field input::placeholder,.field textarea::placeholder{color:var(--ink-ph)}
+.field input:hover,.field textarea:hover,.field select:hover{border-color:rgba(var(--bone-rgb),.3)}
 .field input:focus,.field textarea:focus,.field select:focus{
   outline:none;border-color:var(--bold);background:var(--ink-2);
 }
@@ -402,7 +421,7 @@ em{font-style:normal;color:var(--bold)}
   transform:translateY(-70%) rotate(45deg);
 }
 .sel select option{background:var(--ink-2);color:var(--bone)}
-.sel select:invalid{color:#6E6960}
+.sel select:invalid{color:var(--ink-ph)}
 
 .hint{font-size:.78rem;color:var(--bone-3);margin-top:8px;line-height:1.5}
 .counter{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
@@ -431,7 +450,9 @@ em{font-style:normal;color:var(--bold)}
   margin-top:20px;font-family:var(--f-disp);font-weight:400;
   font-size:clamp(1.85rem,4.4vw,3.05rem);line-height:1.04;letter-spacing:-.03em;max-width:15ch;
 }
-.contact__l > p{margin-top:20px;color:var(--bone-2);max-width:42ch}
+/* :not(.eyebrow) — the bare `> p` also caught the eyebrow and capped it
+   at 42ch of an 11px font (~280px), squeezing its trailing rule. */
+.contact__l > p:not(.eyebrow){margin-top:20px;color:var(--bone-2);max-width:42ch}
 .contact__r{border-top:1px solid var(--line-dk)}
 .contact__r li{
   display:flex;align-items:baseline;gap:24px;
@@ -486,7 +507,7 @@ a.contact__v:hover{color:var(--bold);border-bottom-color:var(--bold)}
 }
 
 @media (max-width:760px){
-  .hero__crest{width:200px;right:-34px;top:auto;bottom:132px;transform:none;opacity:.4}
+  .hero__crest{width:200px;right:-34px;top:auto;bottom:132px;transform:none;opacity:.26}
 
   /* Tighten the vertical stack so the primary CTA clears the fold
      on a 375x667 phone — it was landing ~90px below it. */
@@ -512,7 +533,7 @@ a.contact__v:hover{color:var(--bold);border-bottom-color:var(--bold)}
   .road{grid-template-columns:1fr}
   .road__i{padding:26px 0 28px !important}
   .road__i::before{display:none !important}
-  .road__i+.road__i{border-top:1px solid rgba(242,238,230,.18)}
+  .road__i+.road__i{border-top:1px solid rgba(var(--bone-rgb),.18)}
   .road__i::after{display:none}
 
   .grid2{grid-template-columns:1fr;gap:0}

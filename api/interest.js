@@ -169,23 +169,23 @@ function esc(s) {
 function asHtml(lead) {
   const rows = ROWS.map(([label, key]) =>
     `<tr>` +
-      `<td style="padding:9px 16px 9px 0;border-bottom:1px solid #e5e0d6;font:600 11px/1.4 Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8d877c;white-space:nowrap;vertical-align:top">${esc(label)}</td>` +
-      `<td style="padding:9px 0;border-bottom:1px solid #e5e0d6;font:400 15px/1.5 Arial,sans-serif;color:#0d0f10">${esc(lead[key] || '—')}</td>` +
+      `<td style="padding:9px 16px 9px 0;border-bottom:1px solid #dfe4dd;font:600 11px/1.4 Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#808b84;white-space:nowrap;vertical-align:top">${esc(label)}</td>` +
+      `<td style="padding:9px 0;border-bottom:1px solid #dfe4dd;font:400 15px/1.5 Arial,sans-serif;color:#0f1a20">${esc(lead[key] || '—')}</td>` +
     `</tr>`).join('');
 
-  return '<div style="background:#f2eee6;padding:28px;font-family:Arial,sans-serif">' +
-    '<div style="max-width:600px;margin:0 auto;background:#fff;border:2px solid #0d0f10">' +
-      '<div style="background:#0d0f10;padding:20px 24px">' +
-        '<div style="font:700 20px/1 Arial Black,Arial,sans-serif;color:#f2eee6;letter-spacing:-.5px">BOLD <span style="color:#e4402a">FC</span></div>' +
-        '<div style="font:600 10px/1.4 Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8d877c;margin-top:6px">New Player Interest</div>' +
+  return '<div style="background:#f3f5f1;padding:28px;font-family:Arial,sans-serif">' +
+    '<div style="max-width:600px;margin:0 auto;background:#fff;border:2px solid #0f1a20">' +
+      '<div style="background:#0f1a20;padding:20px 24px">' +
+        '<div style="font:700 20px/1 Arial Black,Arial,sans-serif;color:#f3f5f1;letter-spacing:-.5px">BOLD <span style="color:#b5dc10">FC</span></div>' +
+        '<div style="font:600 10px/1.4 Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#808b84;margin-top:6px">New Player Interest</div>' +
       '</div>' +
       '<div style="padding:24px">' +
         `<table style="width:100%;border-collapse:collapse">${rows}</table>` +
-        '<div style="margin-top:24px;padding:18px;background:#f2eee6;border-left:4px solid #e4402a">' +
-          '<div style="font:600 11px/1.4 Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8d877c;margin-bottom:10px">What are you looking for in a soccer club?</div>' +
-          `<div style="font:400 15px/1.6 Arial,sans-serif;color:#0d0f10;white-space:pre-wrap">${esc(lead.looking)}</div>` +
+        '<div style="margin-top:24px;padding:18px;background:#f3f5f1;border-left:4px solid #b5dc10">' +
+          '<div style="font:600 11px/1.4 Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#808b84;margin-bottom:10px">What are you looking for in a soccer club?</div>' +
+          `<div style="font:400 15px/1.6 Arial,sans-serif;color:#0f1a20;white-space:pre-wrap">${esc(lead.looking)}</div>` +
         '</div>' +
-        `<div style="margin-top:22px;font:400 12px/1.5 Arial,sans-serif;color:#8d877c">Submitted ${esc(lead.submittedAt)}${lead.source ? ' · ' + esc(lead.source) : ''}</div>` +
+        `<div style="margin-top:22px;font:400 12px/1.5 Arial,sans-serif;color:#808b84">Submitted ${esc(lead.submittedAt)}${lead.source ? ' · ' + esc(lead.source) : ''}</div>` +
       '</div>' +
     '</div>' +
   '</div>';
