@@ -12,8 +12,8 @@
      RESEND_API_KEY     Sends an email notification per lead.
                         Requires LEAD_TO_EMAIL, and a verified
                         LEAD_FROM_EMAIL on your Resend domain.
-     LEAD_TO_EMAIL      e.g. andy@boldfctaylor.com (comma-separated ok)
-     LEAD_FROM_EMAIL    e.g. leads@boldfctaylor.com
+     LEAD_TO_EMAIL      e.g. info@rtgacademy.com (comma-separated ok)
+     LEAD_FROM_EMAIL    e.g. leads@rtgacademy.com
 
    ⚠ If NEITHER is set the lead is only written to the Vercel
    runtime log. Recoverable, but not a system. Wire one up

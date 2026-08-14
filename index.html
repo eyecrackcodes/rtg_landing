@@ -39,6 +39,7 @@
       <a href="#why">Why Bold FC</a>
       <a href="#pillars">The Club</a>
       <a href="#soon">Coming Soon</a>
+      <a href="#social">Follow</a>
       <a href="#contact">Contact</a>
     </nav>
 
@@ -52,6 +53,7 @@
     <a href="#why">Why Bold FC</a>
     <a href="#pillars">The Club</a>
     <a href="#soon">Coming Soon</a>
+    <a href="#social">Follow</a>
     <a href="#contact">Contact</a>
     <a class="mobnav__cta" href="#interest">I'm Interested</a>
   </div>
@@ -407,7 +409,98 @@
         </svg>
         <h3>You're on the list.</h3>
         <p id="doneMsg">Thanks — we've got <b>your player's</b> details. You'll be among the first to hear about open sessions, tryout dates, and age groups.</p>
-        <p class="done__ps">Know another family who'd want in? Send them <b>boldfctaylor.com</b>.</p>
+        <p class="done__ps">Know another family who'd want in? Send them this page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ SOCIAL HUB ══════════════════════════════ -->
+<!--
+  TODO(andy): paste each profile URL into data-url. A channel with an empty
+  data-url automatically renders as a non-clickable "Launching soon" tile —
+  so nothing here ever links to a page that doesn't exist yet.
+-->
+<section class="social" id="social">
+  <div class="wrap">
+    <div class="social__head">
+      <p class="eyebrow reveal">Follow The Build</p>
+      <h2 class="social__h reveal" style="--d:.06s">Watch a club get built.</h2>
+      <p class="social__sub reveal" style="--d:.12s">
+        Most clubs show you the finished thing. We're going to show you the whole
+        messy middle — first sessions, first kits, first results. Pick your channel.
+      </p>
+    </div>
+
+    <ul class="chans">
+      <li class="reveal">
+        <a class="chan" data-net="instagram" data-url="" data-handle="@boldfctaylor">
+          <svg class="chan__i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-instagram"></use></svg>
+          <span class="chan__name">Instagram</span>
+          <span class="chan__what">Training clips, matchday, kit reveals</span>
+          <span class="chan__go" aria-hidden="true">Follow</span>
+        </a>
+      </li>
+      <li class="reveal" style="--d:.06s">
+        <a class="chan" data-net="tiktok" data-url="" data-handle="@boldfctaylor">
+          <svg class="chan__i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tiktok"></use></svg>
+          <span class="chan__name">TikTok</span>
+          <span class="chan__what">Skills, drills, and the odd nutmeg</span>
+          <span class="chan__go" aria-hidden="true">Follow</span>
+        </a>
+      </li>
+      <li class="reveal" style="--d:.12s">
+        <a class="chan" data-net="youtube" data-url="" data-handle="Bold FC">
+          <svg class="chan__i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-youtube"></use></svg>
+          <span class="chan__name">YouTube</span>
+          <span class="chan__what">Full matches and coaching breakdowns</span>
+          <span class="chan__go" aria-hidden="true">Subscribe</span>
+        </a>
+      </li>
+      <li class="reveal" style="--d:.18s">
+        <a class="chan" data-net="facebook" data-url="" data-handle="Bold FC Taylor">
+          <svg class="chan__i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-facebook"></use></svg>
+          <span class="chan__name">Facebook</span>
+          <span class="chan__what">Club news, schedules, parent updates</span>
+          <span class="chan__go" aria-hidden="true">Follow</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- ── the interactive half: parents spreading it ── -->
+    <div class="spread reveal">
+      <div class="spread__l">
+        <h3 class="spread__h">Know a family who should see this?</h3>
+        <p class="spread__p">
+          Right now, word of mouth <em>is</em> our marketing. One share puts Bold FC
+          in front of a player who's been waiting for a club like this.
+        </p>
+      </div>
+
+      <div class="spread__r">
+        <div class="spread__btns" id="shareBtns">
+          <button class="sbtn sbtn--go" type="button" data-share="native" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-share"></use></svg>
+            <span>Share</span>
+          </button>
+          <a class="sbtn" data-share="whatsapp" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+            <span>WhatsApp</span>
+          </a>
+          <a class="sbtn" data-share="facebook" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-facebook"></use></svg>
+            <span>Facebook</span>
+          </a>
+          <a class="sbtn" data-share="x" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"></use></svg>
+            <span>X</span>
+          </a>
+          <button class="sbtn" type="button" data-share="copy">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-link"></use></svg>
+            <span class="sbtn__t">Copy link</span>
+          </button>
+        </div>
+        <p class="spread__live" id="shareLive" role="status" aria-live="polite"></p>
       </div>
     </div>
   </div>
@@ -425,15 +518,14 @@
       </p>
     </div>
 
-    <!-- TODO(andy): replace with the real club email / phone / social before going live -->
     <ul class="contact__r">
       <li class="reveal">
         <span class="contact__k">Email</span>
-        <a class="contact__v" href="mailto:hello@boldfctaylor.com">hello@boldfctaylor.com</a>
+        <a class="contact__v" href="mailto:info@rtgacademy.com">info@rtgacademy.com</a>
       </li>
       <li class="reveal" style="--d:.06s">
         <span class="contact__k">Phone</span>
-        <a class="contact__v" href="tel:+18133856320">813.385.6320</a>
+        <a class="contact__v" href="tel:+18442123725">844-212-3725</a>
       </li>
       <li class="reveal" style="--d:.12s">
         <span class="contact__k">Based in</span>
@@ -485,6 +577,36 @@
           font-family="Archivo Black, Arial Black, sans-serif" font-size="26" letter-spacing="1">BFC</text>
     <text x="50" y="87" text-anchor="middle" fill="var(--cr-detail,#0F1A20)"
           font-family="Archivo, Arial, sans-serif" font-size="6.6" font-weight="700" letter-spacing="1.2">TAYLOR</text>
+  </symbol>
+
+  <!-- Social + share glyphs. Drawn inline rather than pulled from an icon
+       CDN: no external request, no render-blocking, and they inherit
+       currentColor so the lime/ink inversion on hover is free. -->
+  <symbol id="i-instagram" viewBox="0 0 24 24">
+    <rect x="2.2" y="2.2" width="19.6" height="19.6" rx="5.6" fill="none" stroke="currentColor" stroke-width="2"/>
+    <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/>
+    <circle cx="17.6" cy="6.4" r="1.4" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-tiktok" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M16.5 5.6A4.4 4.4 0 0 1 15.4 2.7h-3.2v12.7a2.65 2.65 0 1 1-1.9-2.55V9.6a5.8 5.8 0 1 0 5.1 5.75V8.9a7.5 7.5 0 0 0 4.4 1.4V7.15a4.4 4.4 0 0 1-3.3-1.55z"/>
+  </symbol>
+  <symbol id="i-youtube" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M23.5 6.5a3 3 0 0 0-2.1-2.13C19.5 3.85 12 3.85 12 3.85s-7.5 0-9.4.52A3 3 0 0 0 .5 6.5C0 8.4 0 12 0 12s0 3.6.5 5.5a3 3 0 0 0 2.1 2.13c1.9.52 9.4.52 9.4.52s7.5 0 9.4-.52a3 3 0 0 0 2.1-2.13C24 15.6 24 12 24 12s0-3.6-.5-5.5zM9.6 15.6V8.4L15.8 12z"/>
+  </symbol>
+  <symbol id="i-facebook" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M15.1 5.3H17V2.14A26 26 0 0 0 14.26 2C11.54 2 9.68 3.66 9.68 6.7v2.62H6.61v3.56h3.07V22h3.68v-9.12h3.06l.46-3.56h-3.52V7.05c0-1.03.28-1.75 1.84-1.75z"/>
+  </symbol>
+  <symbol id="i-x" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.59l5.24 6.93zm-1.29 19.49h2.04L6.49 3.24H4.3z"/>
+  </symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38 8.24 8.24 0 1 1 8.25 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.19-.54.06a6.7 6.7 0 0 1-3.35-2.93c-.25-.43.25-.4.72-1.33.08-.16.04-.3-.02-.42-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42h-.48c-.16 0-.42.06-.64.3-.22.25-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64 1.53.66 2.13.72 2.9.6.46-.06 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.3z"/>
+  </symbol>
+  <symbol id="i-share" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" d="M12 3v13M7.5 7.5 12 3l4.5 4.5M4.5 14v6.5h15V14"/>
+  </symbol>
+  <symbol id="i-link" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M10 13.5a4.5 4.5 0 0 0 6.36 0l2.83-2.83a4.5 4.5 0 1 0-6.37-6.37l-1.4 1.41M14 10.5a4.5 4.5 0 0 0-6.36 0L4.8 13.33a4.5 4.5 0 1 0 6.37 6.37l1.4-1.41"/>
   </symbol>
 
   <!-- simplified mark — nav size, where the band/stars/wordmark turn to mush -->

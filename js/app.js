@@ -95,6 +95,105 @@
   }
 
   /* ═════════════════════════════════════════════════════════
+     SOCIAL HUB
+     ═════════════════════════════════════════════════════════ */
+  var SHARE_TEXT = 'Bold FC — a new youth soccer club starting in Taylor, TX. ' +
+                   'They’re building the interest list now:';
+  var shareUrl = window.location.href.split('#')[0];
+
+  /* Channel tiles. A tile only becomes a real link once data-url is
+     filled in; until then it renders as "Launching soon" rather than
+     pointing at a profile that doesn't exist. */
+  $$('.chan').forEach(function (chan) {
+    var url = (chan.getAttribute('data-url') || '').trim();
+    var name = $('.chan__name', chan).textContent;
+    var go = $('.chan__go', chan);
+
+    if (/^https?:\/\//i.test(url)) {
+      chan.setAttribute('href', url);
+      chan.setAttribute('target', '_blank');
+      chan.setAttribute('rel', 'noopener');
+      chan.setAttribute('aria-label', go.textContent + ' Bold FC on ' + name);
+      return;
+    }
+    chan.classList.add('is-soon');
+    go.textContent = 'Launching soon';
+    chan.removeAttribute('href');
+  });
+
+  /* Share row */
+  var shareBtns = $('#shareBtns');
+  if (shareBtns) {
+    var live = $('#shareLive');
+    var say = function (msg) {
+      live.textContent = msg;
+      clearTimeout(say._t);
+      say._t = setTimeout(function () { live.textContent = ''; }, 4000);
+    };
+
+    var enc = encodeURIComponent;
+    var intents = {
+      whatsapp: 'https://api.whatsapp.com/send?text=' + enc(SHARE_TEXT + ' ' + shareUrl),
+      facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + enc(shareUrl),
+      x: 'https://twitter.com/intent/tweet?text=' + enc(SHARE_TEXT) + '&url=' + enc(shareUrl)
+    };
+    Object.keys(intents).forEach(function (k) {
+      var el = $('[data-share="' + k + '"]', shareBtns);
+      if (el) el.setAttribute('href', intents[k]);
+    });
+
+    /* native share sheet — only surfaced where the OS actually has one */
+    var nativeBtn = $('[data-share="native"]', shareBtns);
+    if (nativeBtn && navigator.share) {
+      nativeBtn.hidden = false;
+      nativeBtn.addEventListener('click', function () {
+        navigator.share({ title: 'Bold FC', text: SHARE_TEXT, url: shareUrl })
+          .then(function () { say('Thanks for spreading the word.'); })
+          .catch(function () { /* user dismissed the sheet — not an error */ });
+      });
+    }
+
+    var copyBtn = $('[data-share="copy"]', shareBtns);
+    if (copyBtn) {
+      var label = $('.sbtn__t', copyBtn);
+      copyBtn.addEventListener('click', function () {
+        copy(shareUrl).then(function (ok) {
+          if (!ok) { say('Couldn’t copy automatically — the link is in your address bar.'); return; }
+          label.textContent = 'Copied';
+          copyBtn.classList.add('is-done');
+          say('Link copied. Paste it anywhere.');
+          setTimeout(function () {
+            label.textContent = 'Copy link';
+            copyBtn.classList.remove('is-done');
+          }, 2600);
+        });
+      });
+    }
+  }
+
+  /* clipboard API needs a secure context; fall back to execCommand */
+  function copy(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(function () { return true; },
+                                                      function () { return legacyCopy(text); });
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+  function legacyCopy(text) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:absolute;left:-9999px;top:0';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    } catch (e) { return false; }
+  }
+
+  /* ═════════════════════════════════════════════════════════
      FORM
      ═════════════════════════════════════════════════════════ */
   var form = $('#interestForm');
@@ -208,7 +307,7 @@
         btnText.textContent = 'Send My Interest';
         fail.hidden = false;
         fail.textContent = 'Something went wrong sending that (' + err.message +
-          '). Please try again, or email hello@boldfctaylor.com and we’ll add you manually.';
+          '). Please try again, or email info@rtgacademy.com and we’ll add you manually.';
       });
   });
 

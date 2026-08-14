@@ -58,6 +58,10 @@ fieldset{border:0;min-width:0}
 img,svg{display:block;max-width:100%}
 button,input,select,textarea{font:inherit;color:inherit}
 a{color:inherit;text-decoration:none}
+/* Any author `display` beats the UA's [hidden]{display:none} — same
+   specificity, author sheet wins. Without this, .sbtn[hidden] (and any
+   future hidden flex/grid element) renders anyway. */
+[hidden]{display:none !important}
 
 body{
   background:var(--ink);
@@ -442,6 +446,96 @@ em{font-style:normal;color:var(--bold-dk)} /* only used in .why__lede, on bone *
 .done p{margin-top:16px;color:var(--bone-2);max-width:44ch;margin-inline:auto}
 .done b{color:var(--bone)}
 .done__ps{font-size:.88rem;padding-top:22px;margin-top:24px;border-top:1px solid var(--line-dk)}
+
+/* ── 12b. SOCIAL HUB ───────────────────────────────────────── */
+.social{background:var(--ink-2);padding-block:clamp(72px,10vw,124px)}
+.social__head{max-width:56ch;margin-bottom:clamp(38px,5.5vw,64px)}
+.social__h{
+  margin-top:22px;font-family:var(--f-disp);font-weight:400;
+  font-size:clamp(2rem,5.2vw,3.7rem);line-height:1;letter-spacing:-.03em;
+}
+.social__sub{margin-top:18px;color:var(--bone-2)}
+
+.chans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.chan{
+  display:flex;flex-direction:column;height:100%;
+  padding:26px 22px 22px;
+  background:var(--ink);border:1px solid var(--line-dk);
+  transition:background-color .2s var(--ease),border-color .2s var(--ease),
+             color .2s var(--ease),transform .2s var(--ease);
+}
+.chan__i{width:30px;height:30px;color:var(--bold);margin-bottom:20px;transition:color .2s var(--ease)}
+.chan__name{font-family:var(--f-disp);font-size:1.15rem;letter-spacing:-.02em}
+.chan__what{margin-top:8px;font-size:.9rem;line-height:1.5;color:var(--bone-3);transition:color .2s var(--ease)}
+.chan__go{
+  margin-top:auto;padding-top:20px;
+  font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--bold);display:flex;align-items:center;gap:8px;transition:color .2s var(--ease);
+}
+.chan__go::after{
+  content:"";width:7px;height:7px;flex:none;
+  border-top:2px solid currentColor;border-right:2px solid currentColor;
+  transform:rotate(45deg);transition:transform .2s var(--ease);
+}
+/* live channel: whole tile flips to lime */
+.chan[href]{cursor:pointer}
+.chan[href]:hover,.chan[href]:focus-visible{
+  background:var(--bold);border-color:var(--bold);color:var(--ink);transform:translateY(-3px);
+}
+.chan[href]:hover .chan__i,.chan[href]:focus-visible .chan__i,
+.chan[href]:hover .chan__go,.chan[href]:focus-visible .chan__go{color:var(--ink)}
+.chan[href]:hover .chan__what,.chan[href]:focus-visible .chan__what{color:rgba(var(--ink-rgb),.72)}
+.chan[href]:hover .chan__go::after{transform:rotate(45deg) translate(3px,-3px)}
+
+/* No URL yet → honest "soon" state, not a dead link.
+   Signalled with a dashed edge and muted accents rather than `opacity`:
+   dimming the whole tile composites the body copy toward the background
+   and drops it to ~2.7:1, well under AA. Colour carries the state; the
+   text stays at full strength. */
+.chan.is-soon{border-style:dashed;border-color:rgba(var(--bone-rgb),.22)}
+.chan.is-soon .chan__i{color:var(--bone-3)}
+.chan.is-soon .chan__go{color:var(--bone-3);letter-spacing:.16em}
+.chan.is-soon .chan__go::after{display:none}
+
+/* ── the share panel ── */
+.spread{
+  margin-top:clamp(32px,4.5vw,52px);padding:clamp(24px,3.4vw,40px);
+  background:var(--ink);border:1px solid var(--line-dk);border-left:3px solid var(--bold);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
+  gap:clamp(22px,3.5vw,48px);align-items:center;
+}
+.spread__h{font-family:var(--f-disp);font-weight:400;font-size:clamp(1.25rem,2.3vw,1.75rem);line-height:1.12;letter-spacing:-.02em}
+.spread__p{margin-top:12px;color:var(--bone-2);font-size:.95rem}
+.spread__p em{color:var(--bold)} /* on ink here, so full lime is correct */
+.spread__btns{display:flex;flex-wrap:wrap;gap:10px}
+.sbtn{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:12px 16px;min-height:46px;cursor:pointer;
+  background:var(--ink-3);border:1px solid var(--line-dk);color:var(--bone);
+  font-family:var(--f-body);font-size:.76rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  transition:background-color .18s var(--ease),border-color .18s var(--ease),color .18s var(--ease);
+}
+.sbtn svg{width:17px;height:17px;flex:none}
+.sbtn:hover{background:var(--bold);border-color:var(--bold);color:var(--ink)}
+.sbtn--go{background:var(--bold);border-color:var(--bold);color:var(--ink)}
+.sbtn--go:hover{background:var(--bone);border-color:var(--bone)}
+.sbtn.is-done{background:var(--bold);border-color:var(--bold);color:var(--ink)}
+.spread__live{margin-top:12px;min-height:1.2em;font-size:.78rem;color:var(--bold);font-weight:600}
+
+@media (max-width:1000px){
+  .chans{grid-template-columns:1fr 1fr}
+  .spread{grid-template-columns:1fr;align-items:start}
+}
+@media (max-width:600px){
+  .chans{grid-template-columns:1fr}
+  .chan{flex-direction:row;flex-wrap:wrap;align-items:center;padding:18px}
+  .chan__i{margin-bottom:0;margin-right:14px}
+  .chan__name{flex:1}
+  .chan__what{flex-basis:100%;margin-top:10px}
+  .chan__go{flex-basis:100%;padding-top:14px}
+  .sbtn{flex:1 1 auto;justify-content:center}
+}
 
 /* ── 13. CONTACT ───────────────────────────────────────────── */
 .contact{background:var(--ink);padding-block:clamp(70px,9vw,116px)}

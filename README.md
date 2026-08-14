@@ -81,7 +81,47 @@ replaced, so it needs a *lower* opacity to land at the same perceived weight.
 
 ## Page sections
 
-`#top` Hero → ticker → `#why` Why Bold FC → `#pillars` (01 Philosophy · 02 Player Development · 03 Coaching · 04 Community) → `#soon` Coming Soon → `#interest` Interest Form → `#contact` Contact
+`#top` Hero → ticker → `#why` Why Bold FC → `#pillars` (01 Philosophy · 02 Player Development · 03 Coaching · 04 Community) → `#soon` Coming Soon → `#interest` Interest Form → `#social` Follow The Build → `#contact` Contact
+
+---
+
+## Social hub (`#social`)
+
+Two halves: the **channels** and the **share panel**.
+
+### Channels — paste a URL, the tile goes live
+
+Each tile carries `data-url=""`. While that's empty the tile renders as a muted,
+non-clickable **"Launching soon"** card. Paste a real profile URL and `app.js`
+automatically turns it into a proper `<a>` with `target="_blank"`, `rel="noopener"`,
+and an `aria-label`. **Nothing ever links to a profile that doesn't exist yet.**
+
+```html
+<a class="chan" data-net="instagram" data-url="https://instagram.com/…">
+```
+
+The "soon" state is signalled with a dashed border and muted accents, deliberately
+**not** `opacity` — dimming the tile composites its body copy toward the background
+and drops it to ~2.7:1, under AA. Colour carries the state; the text stays full strength.
+
+### Share panel — the actual interaction
+
+For a pre-launch club, the highest-value action after the form is a parent *sharing* it.
+
+- **Native share sheet** via `navigator.share` — the button reveals itself only where
+  the OS actually has one. Note `navigator.share` needs a **secure context**, so it's
+  absent over plain `http://` (but present on `localhost`).
+- **WhatsApp / Facebook / X** intent links, always available.
+- **Copy link** with `navigator.clipboard`, falling back to a `execCommand('copy')`
+  shim for non-secure contexts, plus an `aria-live` confirmation.
+
+Platform glyphs are inline `<symbol>`s, not an icon CDN — the page stays
+single-request and they inherit `currentColor` for the lime-inversion hover.
+
+⚠ There is a global `[hidden]{display:none !important}` in the reset. Without it,
+any author `display` rule (like `.sbtn{display:inline-flex}`) beats the UA's
+`[hidden]{display:none}` — same specificity, author sheet wins — and hidden flex
+elements render anyway. That bug showed a dead Share button to every Firefox user.
 
 ---
 
@@ -113,8 +153,8 @@ LEAD_WEBHOOK_KEY = optional, sent as X-Api-Key
 **Option B — email via [Resend](https://resend.com)**:
 ```
 RESEND_API_KEY  = re_xxxxx
-LEAD_TO_EMAIL   = andy@boldfctaylor.com     (comma-separated for several)
-LEAD_FROM_EMAIL = leads@boldfctaylor.com    (must be on a verified Resend domain)
+LEAD_TO_EMAIL   = info@rtgacademy.com      (comma-separated for several)
+LEAD_FROM_EMAIL = leads@rtgacademy.com     (must be on a verified Resend domain)
 ```
 
 Both can be set at once. The endpoint only returns an error to the browser if **every**
@@ -126,7 +166,7 @@ configured sink fails, so the parent gets told to retry rather than silently los
 
 Search the repo for `TODO(andy)`. As of first commit:
 
-- [ ] **Contact details** — `index.html` `#contact` currently shows `hello@boldfctaylor.com` and RTG's phone number. Swap both for real Bold FC contacts.
+- [x] ~~**Contact details**~~ — now info@rtgacademy.com / 844-212-3725.
 - [ ] **Founder bio** — Pillar 03 "Coaching" has generic copy where Andy + partner's real bio and headshot should go.
 - [ ] **Age bands / founding season** — hero fact strip says "Boys & Girls" and "Founding Season". Confirm before launch.
 - [ ] **Coming Soon dates** — all four milestones read `TBA`. Replace the `<span class="road__tag">` text as dates lock.
